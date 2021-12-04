@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
@@ -10,11 +11,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def register_success(resource)
-    
-    render json: { user:resource, message: 'Signed up sucessfully.' }
+    render json: { user: resource, message: 'Signed up sucessfully.' }
   end
 
   def register_failed
-    render json: { message: "Something went wrong." }
+    render json: { message: 'Something went wrong.' }
   end
 end

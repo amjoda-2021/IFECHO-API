@@ -20,13 +20,15 @@ User.create(first_name: 'jo', last_name: 'justman',
             email: 'jojo.justman@gmail.com', password: '123456', is_advisor?: true)
 
 bdd_meteo = CSV.read('app/assets/mailleLONLATALT.csv',
-               headers: true, liberal_parsing: true)
+                     headers: true, liberal_parsing: true)
 
 bdd_farms = CSV.read('app/assets/fermes_exp.csv',
-headers: true, liberal_parsing: true)
+                     headers: true, liberal_parsing: true)
 
+bdd_thi = CSV.read('app/assets/fake_data.csv',
+                   headers: true, liberal_parsing: true)
 
-bdd_meteo.each_with_index do |row, i|
+bdd_meteo.each_with_index do |row, _i|
   row2 = row[0].split(';')
   Site.create(latitude: (row2[1].to_f * 10_000).to_i,
               longitude: (row2[2].to_f * 10_000).to_i, site_type: 'meteo')
@@ -34,9 +36,13 @@ end
 
 bdd_farms.each do |row|
   row2 = row[0].split(';')
-  Site.create(name:row2[0], longitude: (row2[1].to_f * 10_000).to_i,
-  latitude: (row2[2].to_f * 10_000).to_i, site_type: 'production')
+  Site.create(name: row2[0], longitude: (row2[1].to_f * 10_000).to_i,
+              latitude: (row2[2].to_f * 10_000).to_i, site_type: 'production')
 end
 
+bdd_thi.each do |row|
+  row2 = row[0].split(';')
+  ThiDatum.create(site)
+end
 
-# THI : de 33 à 90, pas de temps : heure 
+# THI : de 33 à 90, pas de temps : heure
