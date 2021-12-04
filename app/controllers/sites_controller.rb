@@ -2,7 +2,7 @@
 class SitesController < ApplicationController
   # before_action :authenticate_user!
   before_action :set_site, only: %i[show update destroy]
-
+  respond_to :json
   # GET /sites
   def index
     @sites = Site.all
