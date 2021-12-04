@@ -2,7 +2,7 @@
 class HistoricalThi
   def initialize(site, number_days_back, to_date)
     @site = site
-    @number_days_back = number_days_back
+    @number_days_back = number_days_back + 1
     @to_date = to_date
   end
 

@@ -21,7 +21,8 @@ class SitesController < ApplicationController
     # past_ct_array = HistoricalCt.new(@site, number_days_back, reference_date).perform
     # future_thi_array = PredictedThi.new(@site, number_days_forward, reference_date).perform
     # future_ct_array = PredictedCt.new(@site, number_days_forward, reference_date).perform
-    final_dataset = ReturnThermalData.new(Site.where(name:"DERVAL").first, 5, 5, "2019-07-15").perform
+    final_dataset = ReturnThermalData
+                    .new(Site.where(name: 'DERVAL').first, 5, 5, '2019-07-15').perform
     past_thi_array = final_dataset[:historical_thi]
     past_ct_array = final_dataset[:historical_ct]
     future_thi_array = final_dataset[:predicted_thi]
@@ -29,7 +30,6 @@ class SitesController < ApplicationController
 
     render json: { site: @site, historical_thi: past_thi_array, historical_ct: past_ct_array,
                    future_thi: future_thi_array, future_ct: future_ct_array }
-                  
   end
 
   # POST /sites
@@ -63,7 +63,6 @@ class SitesController < ApplicationController
   def set_site
     @site = Site.find(params[:id])
     # @site = current_user.sites.find(params[:id])
-
   end
 
   # Only allow a list of trusted parameters through.

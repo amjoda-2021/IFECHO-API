@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Advisor::SitesController < ApplicationController
   before_action :set_site, only: %i[show update destroy]
   before_action :authenticate_user!
@@ -54,7 +55,6 @@ class Advisor::SitesController < ApplicationController
   def set_site
     # @site = Site.find(params[:id])
     @site = current_user.advised_sites.find(params[:id])
-
   end
 
   # Only allow a list of trusted parameters through.
