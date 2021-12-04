@@ -8,4 +8,10 @@ Rails.application.routes.draw do
              }
 
   resources :users
+  resources :sites
+
+  namespace :advisor do
+    resources :sites
+  end
+
 end

@@ -1,12 +1,11 @@
-# frozen_string_literal: true
-class SitesController < ApplicationController
+class Advisor::SitesController < ApplicationController
   before_action :set_site, only: %i[show update destroy]
   before_action :authenticate_user!
 
   # GET /sites
   def index
     # @sites = Site.all
-    @sites = current_user.sites
+    @sites = current_user.advised_sites
 
     render json: @sites
   end
@@ -54,7 +53,7 @@ class SitesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_site
     # @site = Site.find(params[:id])
-    @site = current_user.sites.find(params[:id])
+    @site = current_user.advised_sites.find(params[:id])
 
   end
 
