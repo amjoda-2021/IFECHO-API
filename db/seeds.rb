@@ -42,7 +42,7 @@ end
 
 bdd_thi.each do |row|
   row2 = row[0].split(';')
-  ThiDatum.create(site)
+  ThiDatum.create(site:   )
 end
 
 # THI : de 33 à 90, pas de temps : heure
