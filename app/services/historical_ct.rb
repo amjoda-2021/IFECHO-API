@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class HistoricalThi
+class HistoricalCt
 
   def initialize(site, number_days_back, to_date)
     @site = site
@@ -8,7 +8,7 @@ class HistoricalThi
   end
 
   def perform
-    ThiDatum.where(site: @site, date: start_date().to_s..@to_date.to_s).pluck(:thi)
+    CtDatum.where(site: @site, date: start_date().to_s..@to_date.to_s).pluck(:ct)
   end
 
   private

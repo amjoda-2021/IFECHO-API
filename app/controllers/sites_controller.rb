@@ -12,10 +12,15 @@ class SitesController < ApplicationController
 
   # GET /sites/1
   def show
-    reference_date = "2018-06-20".to_date
+    reference_date = '2018-06-20'.to_date
     number_days_back = 5
+    number_days_forward = 5
     past_thi_array = HistoricalThi.new(@site, number_days_back, reference_date).perform
-    render json: {site: @site, historical_thi: past_thi_array}
+    past_ct_array = HistoricalCt.new(@site, number_days_back, reference_date).perform
+    future_thi_array = PredictedThi.new(@site, number_days_forward, reference_date).perform
+    future_ct_array = PredictedCt.new(@site, number_days_forward, reference_date).perform
+    render json: { site: @site, historical_thi: past_thi_array, historical_ct: past_ct_array,
+                   future_thi: future_thi_array, future_ct: future_ct_array }
   end
 
   # POST /sites
