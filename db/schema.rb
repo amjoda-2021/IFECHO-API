@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_215021) do
 
   create_table "sites", force: :cascade do |t|
     t.string "name"
+    t.integer "site_type"
     t.bigint "breeder_id"
     t.string "location"
     t.string "city"
