@@ -7,7 +7,11 @@ Rails.application.routes.draw do
                registrations: 'users/registrations'
              }
 
-  resources :users do 
+  resources :users
+  resources :sites
+
+  namespace :advisor do
     resources :sites
-  end 
+  end
+  post '/sitesdate/:id', to: 'sites#show'
 end
