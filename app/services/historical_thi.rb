@@ -1,19 +1,22 @@
 # frozen_string_literal: true
 class HistoricalThi
-  def initialize(site, numbers_day_back)
+
+  def initialize(site, number_days_back, to_date)
     @site = site
-    @numbers_day_back = numbers_day_back
-    # pour des raisons de démonstration lors du Hackaton du 04/12, la date d'aujourd'hui est fixée au 09/07/2019
-    @today = "09/07/2019".to_time
+    @number_days_back = number_days_back
+    @to_date = to_date
   end
 
   def perform
-    ThiDatum.where(site: @site, date: start_date..@today)
+    ThiDatum.where(site: @site, date: start_date().to_s..@to_date.to_s).pluck(:thi)
   end
 
   private
   def start_date
-    @today - 3600*24*@numbers_day_back
+    # puts @to_date.to_s.class
+    # puts start_date.to_s.class
+    # puts "2018-05-29".class
+    start_date = @to_date - @number_days_back
   end
 
 end
