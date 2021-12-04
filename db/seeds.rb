@@ -30,8 +30,11 @@ end
 # bdd_farms = CSV.read('app/assets/fermes_exp.csv',
 #                      headers: true, liberal_parsing: true)
 
-bdd_thi = CSV.read('app/assets/fake_data.csv',
+bdd_thi = CSV.read('app/assets/thi.csv',
                    headers: true, liberal_parsing: true)
+
+bdd_ct = CSV.read('app/assets/ct.csv',
+                  headers: true, liberal_parsing: true)
 
 # bdd_meteo.each_with_index do |row, _i|
 #   row2 = row[0].split(';')
@@ -45,9 +48,13 @@ bdd_thi = CSV.read('app/assets/fake_data.csv',
 #               latitude: (row2[2].to_f * 10_000).to_i, site_type: 'production')
 # end
 
-byebug
-
 bdd_thi.each do |row|
-  ThiDatum.create(site: Site.where(name:"DERVAL").first, thi: (row[1].to_f*10000).to_i, date: row[0].to_time)
+  row2 = row[0].split(';')
+  ThiDatum.create(site: Site.where(name: 'DERVAL').first, thi: (row2[1].to_f).to_i, date: row2[0].to_time)
+end
+
+bdd_ct.each do |row|
+  row2 = row[0].split(';')
+  CtDatum.create(site: Site.where(name: 'DERVAL').first, ct: (row2[3].to_f).to_i, date: row2[2].to_time)
 end
 # THI : de 33 à 90, pas de temps : heure
