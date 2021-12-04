@@ -10,33 +10,44 @@
 
 require 'csv'
 
-[CtDatum, SiteAdvisor, Site, ThiDatum, User].map(&:destroy_all)
+# [CtDatum, SiteAdvisor, Site, ThiDatum, User].map(&:destroy_all)
+[ThiDatum].map(&:destroy_all)
 
-%w[ct_data site_advisors sites thi_data users].map do |tab|
+# %w[ct_data site_advisors sites thi_data users].map do |tab|
+#   ActiveRecord::Base.connection.reset_pk_sequence!(tab)
+# end
+
+%w[thi_data].map do |tab|
   ActiveRecord::Base.connection.reset_pk_sequence!(tab)
 end
 
-User.create(first_name: 'jo', last_name: 'justman',
-            email: 'jojo.justman@gmail.com', password: '123456', is_advisor?: true)
+# User.create(first_name: 'jo', last_name: 'justman',
+#             email: 'jojo.justman@gmail.com', password: '123456', is_advisor?: true)
 
-bdd_meteo = CSV.read('app/assets/mailleLONLATALT.csv',
-               headers: true, liberal_parsing: true)
+# bdd_meteo = CSV.read('app/assets/mailleLONLATALT.csv',
+#                      headers: true, liberal_parsing: true)
 
-bdd_farms = CSV.read('app/assets/fermes_exp.csv',
-headers: true, liberal_parsing: true)
+# bdd_farms = CSV.read('app/assets/fermes_exp.csv',
+#                      headers: true, liberal_parsing: true)
 
+bdd_thi = CSV.read('app/assets/fake_data.csv',
+                   headers: true, liberal_parsing: true)
 
-bdd_meteo.each_with_index do |row, i|
-  row2 = row[0].split(';')
-  Site.create(latitude: (row2[1].to_f * 10_000).to_i,
-              longitude: (row2[2].to_f * 10_000).to_i, site_type: 'meteo')
+# bdd_meteo.each_with_index do |row, _i|
+#   row2 = row[0].split(';')
+#   Site.create(latitude: (row2[1].to_f * 10_000).to_i,
+#               longitude: (row2[2].to_f * 10_000).to_i, site_type: 'meteo')
+# end
+
+# bdd_farms.each do |row|
+#   row2 = row[0].split(';')
+#   Site.create(name: row2[0], longitude: (row2[1].to_f * 10_000).to_i,
+#               latitude: (row2[2].to_f * 10_000).to_i, site_type: 'production')
+# end
+
+byebug
+
+bdd_thi.each do |row|
+  ThiDatum.create(site: Site.where(name:"DERVAL").first, thi: (row[1].to_f*10000).to_i, date: row[0].to_time)
 end
-
-bdd_farms.each do |row|
-  row2 = row[0].split(';')
-  Site.create(name:row2[0], longitude: (row2[1].to_f * 10_000).to_i,
-  latitude: (row2[2].to_f * 10_000).to_i, site_type: 'production')
-end
-
-
-# THI : de 33 à 90, pas de temps : heure 
+# THI : de 33 à 90, pas de temps : heure

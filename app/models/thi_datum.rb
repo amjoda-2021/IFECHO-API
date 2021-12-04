@@ -2,4 +2,5 @@
 
 class ThiDatum < ApplicationRecord
   belongs_to :site
+
 end

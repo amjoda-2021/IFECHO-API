@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_215021) do
   create_table "ct_data", force: :cascade do |t|
     t.bigint "site_id"
     t.integer "ct"
+    t.datetime "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["site_id"], name: "index_ct_data_on_site_id"
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_215021) do
   create_table "thi_data", force: :cascade do |t|
     t.bigint "site_id"
     t.integer "thi"
+    t.datetime "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["site_id"], name: "index_thi_data_on_site_id"
