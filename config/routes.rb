@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   namespace :advisor do
     resources :sites
   end
-
+  post '/sitesdate/:id', to: 'sites#show'
 end
