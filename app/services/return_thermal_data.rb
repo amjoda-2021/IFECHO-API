@@ -25,8 +25,8 @@ class ReturnThermalData
   def complete_ct_dataset
     ct_past_dataset_length = @final_data_set[:historical_ct].count
     ct_future_dataset_length = @final_data_set[:predicted_ct].count
-    initial_not_a_number_array = Array.new(ct_past_dataset_length,"NaN")
-    final_not_a_number_array = Array.new(ct_future_dataset_length, "NaN")
+    initial_not_a_number_array = Array.new(ct_past_dataset_length, 'NaN')
+    final_not_a_number_array = Array.new(ct_future_dataset_length, 'NaN')
     @final_data_set[:historical_ct] = @final_data_set[:historical_ct] + final_not_a_number_array
     @final_data_set[:predicted_ct] = initial_not_a_number_array + @final_data_set[:predicted_ct]
     @final_data_set

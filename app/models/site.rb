@@ -8,7 +8,7 @@ class Site < ApplicationRecord
   has_many :ct_data, dependent: :destroy
   has_many :thi_data, dependent: :destroy
 
-  enum site_type: [:production, :meteo]
+  enum site_type: { production: 0, meteo: 1 }
 
   validates :site_type, presence: true
 end

@@ -13,23 +13,15 @@ class SitesController < ApplicationController
 
   # GET /sites/1
   def show
-    # reference_date = params[:date].to_date
-    reference_date = params[:date]
-    number_days_back = 5
-    number_days_forward = 5
-    # past_thi_array = HistoricalThi.new(@site, number_days_back, reference_date).perform
-    # past_ct_array = HistoricalCt.new(@site, number_days_back, reference_date).perform
-    # future_thi_array = PredictedThi.new(@site, number_days_forward, reference_date).perform
-    # future_ct_array = PredictedCt.new(@site, number_days_forward, reference_date).perform
     final_dataset = ReturnThermalData
-                    .new(Site.where(name: 'DERVAL').first, 5, 5, params[:date]).perform
-    past_thi_array = final_dataset[:historical_thi]
-    past_ct_array = final_dataset[:historical_ct]
-    future_thi_array = final_dataset[:predicted_thi]
-    future_ct_array = final_dataset[:predicted_ct]
+                    .new(Site.where(name: 'DERVAL').first,
+                         5, 5, params[:date]).perform
 
-    render json: { site: @site, historical_thi: past_thi_array, historical_ct: past_ct_array,
-                   future_thi: future_thi_array, future_ct: future_ct_array }
+    render json: { site: @site,
+                   historical_thi: final_dataset[:historical_thi],
+                   historical_ct: final_dataset[:historical_ct],
+                   future_thi: final_dataset[:predicted_thi],
+                   future_ct: final_dataset[:predicted_ct] }
   end
 
   # POST /sites
