@@ -22,7 +22,7 @@ class SitesController < ApplicationController
     # future_thi_array = PredictedThi.new(@site, number_days_forward, reference_date).perform
     # future_ct_array = PredictedCt.new(@site, number_days_forward, reference_date).perform
     final_dataset = ReturnThermalData
-                    .new(Site.where(name: 'DERVAL').first, 5, 5, '2019-07-15').perform
+                    .new(Site.where(name: 'DERVAL').first, 5, 5, params[:date]).perform
     past_thi_array = final_dataset[:historical_thi]
     past_ct_array = final_dataset[:historical_ct]
     future_thi_array = final_dataset[:predicted_thi]
