@@ -24,8 +24,8 @@ end
 User.create(first_name: 'Arti', last_name: 'Chaud',
             email: 'artichaud@gmail.com', password: '123456')
 
-# bdd_meteo = CSV.read('app/assets/mailleLONLATALT.csv',
-#                      headers: true, liberal_parsing: true)
+bdd_meteo = CSV.read('app/assets/mailleLONLATALT.csv',
+                     headers: true, liberal_parsing: true)
 
 bdd_farms = CSV.read('app/assets/fermes_exp.csv',
                      headers: true, liberal_parsing: true)
@@ -36,11 +36,11 @@ bdd_thi = CSV.read('app/assets/thi.csv',
 bdd_ct = CSV.read('app/assets/ct.csv',
                   headers: true, liberal_parsing: true)
 
-# bdd_meteo.each_with_index do |row, _i|
-#   row2 = row[0].split(';')
-#   Site.create(latitude: (row2[1].to_f * 10_000).to_i,
-#               longitude: (row2[2].to_f * 10_000).to_i, site_type: 'meteo')
-# end
+bdd_meteo.each_with_index do |row, _i|
+  row2 = row[0].split(';')
+  Site.create(latitude: (row2[1].to_f * 10_000).to_i,
+              longitude: (row2[2].to_f * 10_000).to_i, site_type: 'meteo')
+end
 
 bdd_farms.each do |row|
   row2 = row[0].split(';')
@@ -55,11 +55,11 @@ SiteAdvisor.create(advised_site: Site.find(4), advisor: User.first)
 
 bdd_thi.each do |row|
   row2 = row[0].split(';')
-  ThiDatum.create(site: Site.where(name: 'DERVAL').first, thi: row2[1].to_f.to_i, date: row2[0].to_time)
+  ThiDatum.create(site: Site.where(name: 'A').first, thi: row2[1].to_f.to_i, date: row2[0].to_time)
 end
 
 bdd_ct.each do |row|
   row2 = row[0].split(';')
-  CtDatum.create(site: Site.where(name: 'DERVAL').first, ct: row2[3].to_f.to_i, date: row2[2].to_time)
+  CtDatum.create(site: Site.where(name: 'A').first, ct: row2[3].to_f.to_i, date: row2[2].to_time)
 end
 # THI : de 33 à 90, pas de temps : heure
