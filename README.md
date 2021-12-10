@@ -6,7 +6,7 @@ ruby 2.7.4p191
 Rails 6.1.4.1
 
 # Enjeu métier
-Les animaux d'élevage sont impactés, au même titre que les humains, par les périodes de températures élevées et en particulier quand la température nocturne ne descend pas assez pour se rafraîchir. Les impacts sur la production peuvent être très significatifs
+Les animaux d'élevage sont impactés, au même titre que les humains, par les périodes de températures élevées et en particulier quand la température nocturne ne descend pas assez pour se rafraîchir. Les impacts sur la production peuvent être très significatifs /n
 L'application s'est donnée comme objectif de permettre à un utilisateur donné, soit un exploitant agricole, soit son conseiller, de suivre deux indicateurs le **Thermal Humidity Index (THI)** ainsi que la **Charge Thermique (CT)**.
 Le **THI** est un agrégat qui donne une mesure de l'humidity et de la température à un instant donné. La **CT**, prend en compte l'évolution de la température sur la durée et notamment la présence ou l'absence de période de rafraîchissement.
 Le **THI** et **CT** dépendent du lieu dans lequel les mesures sont prises. Se dessine alors pour l'éleveur une possibilité de mettre en place une statégie d'adaptation aux périodes de chaleur intense, appelées à se renouveler
