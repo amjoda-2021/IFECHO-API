@@ -14,7 +14,7 @@ L'application permet de suivre l'évolution de ces deux indicateurs sur une pér
 
 # Choix techniques
 * structuration de la base avec table de jointure et utilisation des `class_name` pour nommer correctement les rôles.
-* Un utilisateur peut en effet avoir un rôle d'éleveur (`Breeder`) ou de conseiller (`Advisor`) : est `advisor` celui dont `User.find(y).advised_sites` n’est pas vide et `breeder` celui dont `User.find(z).sites` n’est pas null. On peut donc être `breeder` et `advisor` en même temps sans qu’il y ait de conflit.
+* Un utilisateur peut en effet avoir un rôle d'éleveur (`Breeder`) ou de conseiller (`Advisor`) : est `advisor` celui dont `User.find(y).advised_sites` n’est pas null et `breeder` celui dont `User.find(z).sites` n’est pas null. On peut donc être `breeder` et `advisor` en même temps sans qu’il y ait de conflit.
 * Les sites n’ont pas nécessairement de `breeder` ou d’`advisor` car il peut s’agir de sites météos => on a mis en place un `enum` nommé `site_type` qui gère les différents statuts d’un site : `enum site_type: { production: 0, meteo: 1 }` dans le model `site.rb`
 * Pour séparer les fonctionnalités accessibles au `breeder` et à l'`advisor`, nous avons mis en place un contrôleur spécique à l'`advisor`via un `namespace`
 * Afin de déharger au maximum les contrôleurs, nous avons mis en place des `services` qui vont chercher la donnée en base et la rendre sous forme d'un `JSON`
