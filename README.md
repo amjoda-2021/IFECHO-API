@@ -1,7 +1,6 @@
-# README
+Ce repo contient la proposition de la team `IFECHO` le code du back de l'application c
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Enjeu 
 
 Things you may want to cover:
 
